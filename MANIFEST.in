@@ -1,0 +1,8 @@
+graft panel_sketch/dist
+include panel_sketch/*.json
+include panel_sketch/models/*.ts
+include panel_sketch/index.ts
+include README.md
+global-exclude *.ipynb_checkpoints/*
+global-exclude *.py[co]
+global-exclude *~
