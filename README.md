@@ -20,6 +20,8 @@ Check out the `panel-sketch` examples on **Binder**
 
 [![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
 
+It leverages `Python` to `Javascript` technologies. Currently [Pyodide](https://github.com/pyodide/pyodide) but potentially also [Transcrypt](https://www.transcrypt.org/), [Brython](https://brython.info/) or similar in the future.
+
 ## License
 
 The `panel-sketch` python package and repository is open source and free to use (MIT License).
