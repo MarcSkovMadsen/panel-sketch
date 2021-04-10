@@ -4,11 +4,11 @@ import setuptools
 
 setuptools.setup(
     name="jupyter-panel-examples-server",
-    py_modules=["__init__"],
+    py_modules=["jupyter_examples_server"],
     entry_points={
         "jupyter_serverproxy_servers": [
-            "panel = __init__:panel_serve_examples",
+            "panel = jupyter_examples_server:panel_serve_examples",
         ]
     },
-    install_requires=["jupyter-server-proxy"],
+    install_requires=["jupyter-server-proxy", "panel"],
 )
