@@ -1,3 +1,3 @@
 -e .
--e binder/jupyter-panel-package-server/.
+-e binder/jupyter-examples-server/.
 jupyter-server-proxy
