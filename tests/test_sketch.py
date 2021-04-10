@@ -12,7 +12,9 @@ def test_constructor():
 
 def test_sketch_app():
     src = "https://github.com/holoviz/panel/raw/master/doc/_static/logo_stacked.png"
-    image_style = "height:95%;cursor: pointer;border: 1px solid #ddd;border-radius: 4px;padding: 5px;"
+    image_style = (
+        "height:95%;cursor: pointer;border: 1px solid #ddd;border-radius: 4px;padding: 5px;"
+    )
     image_html = f"<img class='image-button' src='{src}' style='{image_style}'>"
 
     sketch = Sketch(value=image_html, height=100, width=100)

@@ -4,8 +4,10 @@ from panel.widgets.base import Widget
 
 from .models import sketch
 
+
 class Sketch(Widget):
     """The Sketch Model provides ..."""
+
     # Set the Bokeh model to use
     _widget_type = sketch.Sketch
 
