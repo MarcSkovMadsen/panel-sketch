@@ -21,7 +21,8 @@ def panel_serve_examples():
         "command": [
             "panel",
             "serve",
-            *glob("examples/*.ipynb") + " examples/pyp5js/gallery/gallery.py",
+            *glob("examples/*.ipynb"),
+            "examples/pyp5js/gallery/gallery.py",
             "--allow-websocket-origin=*",
             "--port",
             "{port}",
