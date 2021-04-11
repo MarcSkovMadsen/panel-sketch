@@ -12,7 +12,7 @@ The purpose of the `panel-sketch` package is to make it easy for Pythonistas to 
 
 It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) but not limited to the p5js universe.
 
-You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python &#128013;.
+You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python, #PyData and #PyViz &#128013;.
 
 Check out the `panel-sketch` examples on **Binder**
 
@@ -43,13 +43,9 @@ from panel_sketch import Sketch
 
 import panel as pn
 pn.config.sizing_mode="stretch_width"
-```
 
-```python
 args={"r": 10, "g": 200, "b": 40} # This will give us the color for our sketch
-```
 
-```python
 sketch_python = """
 # https://p5js.org/examples/interaction-wavemaker.html
 
@@ -85,11 +81,9 @@ def draw():
 
     t = t + 0.01
 """
-```
 
-```python
 sketch = Sketch(object=sketch_python, template="pyp5js", compiler="pyodide", args=args)
-sketch.viewer.view
+sketch.viewer.view.servable()
 ```
 
 ![Basic Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-basic-example.png?raw=true)
@@ -129,7 +123,7 @@ When I get the time I would like to
 - Find out how I can serve the target js modules in notebook (Enable Transcrypt in Notebook).
 - Support [alternatives](https://www.slant.co/options/147/alternatives/~p5-js-alternatives) to p5js like [three.js](https://threejs.org/)
 - (re-)align with pyp5js
-- Add example app to awesome-panel.org.
+- Add example app to [Awesome Panel](https://awesome-panel.org).
 - Support extensions to p5js like [m5.js](https://ml5js.org/)
 - Create youtube tutorial video
 - Add badges for 100% test coverage etc.
