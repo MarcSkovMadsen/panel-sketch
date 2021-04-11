@@ -6,11 +6,13 @@ THIS IS APLHA SOFTWARE AND YOU MAY EXPERIENCE ROUGH EDGES.
 
 The purpose of the `panel-sketch` package is to make it easy for Pythonistas to quickly sketch interactive visualizations and other applications running in
 
-- The browser. Potentially without a Python backend
+- The browser - also without a Python backend
 - The Jupyter Notebook.
 - Your favorite editor or IDE.
 
-It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) but not limited to the p5js universe. You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python &#128013;.
+It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) but not limited to the p5js universe.
+
+You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python &#128013;.
 
 Check out the `panel-sketch` examples on **Binder**
 
@@ -18,11 +20,9 @@ Check out the `panel-sketch` examples on **Binder**
 | - | - | - |
 | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?filepath=examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=panel) |
 
-THE PANEL APPS LINK IS CURRENTLY NOT WORKING. FORM THE JUPYTER LAB ON BINDER YOU CAN START IT MANUALLY IN A TERMINAL USING
-
 [![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
 
-It leverages `Python` to `Javascript` technologies. Currently [Pyodide](https://github.com/pyodide/pyodide) and [Transcrypt](https://www.transcrypt.org/). But potentially also [Brython](https://brython.info/) or similar in the future.
+It leverages `Python` to `Javascript` frameworks. Currently [Pyodide](https://github.com/pyodide/pyodide) and [Transcrypt](https://www.transcrypt.org/). But potentially also [Brython](https://brython.info/) or similar in the future.
 
 ## License
 
@@ -100,18 +100,21 @@ sketch.viewer.view
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
 
+## Examples
+
 ### [Gallery App](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/examples/pyp5js/gallery/gallery.py)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/pyp5js/gallery/gallery.py)
-
-## Examples
-
-Coming up
 
 ## Additional Resources
 
 You can find more inspiration via the links below.
 
+- [p5js](https://p5js.org/get-started/) and [p5js sketches](https://editor.p5js.org/p5/sketches)
+- [pyp5js](https://github.com/berinhard/pyp5js)
+- [Pyodide](https://github.com/pyodide/pyodide)
+- [Transcrypt](https://www.transcrypt.org/)
+- [Brython](https://brython.info/)
 - [Panel](https://panel.holoviz.org)
 - [Awesome Panel](https://awesome-panel.org)
 
@@ -119,9 +122,16 @@ You can find more inspiration via the links below.
 
 When I get the time I would like to
 
-- Support Transcrypt for compiling
+- Add `basic` template examples.
+- Enable using the content of notebook cells instead of a string to instantite `Sketch`.
+- Add more notebook examples
+- Enable easy import and export of sketches
+- Find out how I can serve the target js modules in notebook (Enable Transcrypt in Notebook).
 - Support [alternatives](https://www.slant.co/options/147/alternatives/~p5-js-alternatives) to p5js like [three.js](https://threejs.org/)
+- (re-)align with pyp5js
+- Add example app to awesome-panel.org.
 - Support extensions to p5js like [m5.js](https://ml5js.org/)
+- Create youtube tutorial video
 - Add badges for 100% test coverage etc.
 - Distribute as conda package
 
