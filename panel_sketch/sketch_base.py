@@ -42,6 +42,8 @@ class SketchBase(param.Parameterized):
         doc="""A Dictionary of keys and values that can be used in the python script"""
     )
 
+    loading = param.Boolean(doc="""Whether or not the Sketch is loading. For example during compilation.""")
+
     template = param.ObjectSelector(DEFAULT_TEMPLATE, objects=TEMPLATES)
     compiler = param.ObjectSelector(DEFAULT_COMPILER, objects=COMPILERS)
 

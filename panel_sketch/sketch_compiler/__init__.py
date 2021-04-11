@@ -26,7 +26,7 @@ OBJECT_PREFIX = "sketchElement = document.getElementById('sketch-element')\n"
 TRANSCRYPT_DIR = str(ROOT / "assets" / "js" / "transcrypt").replace("\\", "/") + "/"
 
 print(f"""
-    Remember to add --static-dirs transcrypt={TRANSCRYPT_DIR}"""
+    Warning: Remember to add --static-dirs transcrypt={TRANSCRYPT_DIR} when running panel serve"""
 )
 
 
@@ -47,8 +47,12 @@ class SketchCompilerBase(param.Parameterized):
 
     def _run_compiler(self):
         # pylint: disable=no-member
+        self.sketch.loading=True
+
         python = OBJECT_PREFIX + self.sketch.object
         self.sketch.javascript = self._compile(python, self._template_string)
+
+        self.sketch.loading=False
 
     @classmethod
     def _compile(cls, sketch_object, template_string):

@@ -59,6 +59,11 @@ class SketchViewer(param.Parameterized):
             f'<script type="text/javascript">{javascript_args_unique}</script>'
         )
 
+    @param.depends("sketch.loading", watch=True)
+    def _signal_loading(self):
+        print("signal_loading", self.sketch.loading)
+        self.view.loading=self.sketch.loading
+
     @param.depends("sketch.javascript", watch=True)
     def _update_js_pane(self):
         self._update_layout()

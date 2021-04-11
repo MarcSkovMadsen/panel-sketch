@@ -6,8 +6,6 @@ import param
 from panel_sketch import Sketch
 
 pn.config.sizing_mode = "stretch_width"
-# pn.config.css_files.append("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css")
-# pn.config.js_files["highlight"]="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"
 pn.extension("ace")
 
 ROOT = pathlib.Path(__file__).parent
@@ -47,7 +45,7 @@ pn.config.sizing_mode = "stretch_width"
 gallery = Gallery()
 
 template = pn.template.FastListTemplate(
-    site="Panel Sketch", title="P5js Examples", main_max_width="1200px"
+    site="Panel Sketch", title="Examples", main_max_width="1200px"
 )
 template.sidebar[:] = [
     gallery.sketch.param.template,

@@ -13,21 +13,21 @@ def test_app():
     sketch = Sketch(
         # Test that it also works indented
         object="""
-    def setup():
+def setup():
 
-        createCanvas(200, 200)
+    createCanvas(200, 200)
 
-        background(160)
+    background(160)
 
-    def draw():
+def draw():
 
-        fill("blue")
+    fill("blue")
 
-        background(200)
+    background(200)
 
-        radius = sin(frameCount / 60) * window.args.value + 50
+    radius = sin(frameCount / 60) * window.args.value + 50
 
-        ellipse(100, 100, radius, radius)
+    ellipse(100, 100, radius, radius)
     """,
     )
 
@@ -39,7 +39,7 @@ def test_app():
 
     _update_value(slider.value)
 
-    return pn.Column(sketch.viewer, slider)
+    return pn.Column(sketch.viewer.view, slider)
 
 
 if __name__.startswith("bokeh"):
