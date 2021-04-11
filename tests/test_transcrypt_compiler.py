@@ -24,6 +24,7 @@ def test_can_construct():
         == 1
     )
 
+
 def test_can_construct():
     sketch = SketchBase(object=SKETCH_PYTHON, template="pyp5js")
     compiler = TranscryptCompiler(sketch=sketch)
@@ -32,8 +33,7 @@ def test_can_construct():
 
     # When concatenating transcrypt generated modules we need to make sure they only appear once
     assert sketch.javascript.count("var __name__") == 1
-    assert sketch.javascript.count("var float") == 1
     assert (
-        sketch.javascript.count("var sketchElement = document.getElementById('sketch-element')\n")
+        sketch.javascript.count("var sketchElement = document.getElementById ('sketch-element')")
         == 1
     )

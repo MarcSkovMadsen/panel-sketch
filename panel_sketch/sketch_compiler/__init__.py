@@ -17,11 +17,17 @@ PYODIDE_TEMPLATE_STRINGS = {
 }
 
 TRANSCRYPT_TEMPLATE_STRINGS = {
-    "basic": (ROOT / "template_transcrypt_basic.js").read_text(),
-    "pyp5js": (ROOT / "template_transcrypt_pyp5js.js").read_text(),
+    "basic": (ROOT / "template_transcrypt_basic.py").read_text(),
+    "pyp5js": (ROOT / "template_transcrypt_pyp5js.py").read_text(),
 }
 
 OBJECT_PREFIX = "sketchElement = document.getElementById('sketch-element')\n"
+
+TRANSCRYPT_DIR = str(ROOT / "assets" / "js" / "transcrypt").replace("\\", "/") + "/"
+
+print(f"""
+    Remember to add --static-dirs transcrypt={TRANSCRYPT_DIR}"""
+)
 
 
 class SketchCompilerBase(param.Parameterized):
@@ -96,7 +102,7 @@ class TranscryptCompiler(SketchCompilerBase):
             )
 
             # We should find a way to serve the transcrypt and p5 assets locally
-            sketch_js = (root / "__target__/sketch.js").read_text().replace("from './", "")
+            sketch_js = (root / "__target__/sketch.js").read_text().replace("from './", "from '../transcrypt/")
             # results.append(sketch_js)
             return sketch_js
 
