@@ -17,6 +17,7 @@ PYODIDE_TEMPLATE_STRINGS = {
 
 class SketchCompilerBase(param.Parameterized):
     """The SketchCompilerBase should be inherited by child classes"""
+
     run = param.Action(constant=True)
 
     sketch = param.ClassSelector(class_=SketchBase, precedence=-1, constant=True)
@@ -45,6 +46,7 @@ class SketchCompilerBase(param.Parameterized):
 
 class PyodideCompiler(SketchCompilerBase):
     """The PyodideCompiler uses the Pyodide JS library"""
+
     run = param.Action(constant=True)
 
     sketch = param.ClassSelector(class_=SketchBase, precedence=-1, constant=True)

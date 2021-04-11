@@ -1,4 +1,6 @@
-from panel_sketch.sketch_compiler import PyodideCompiler, SketchBase, SketchCompilerBase
+# pylint: disable=redefined-outer-name,protected-access
+# pylint: disable=missing-function-docstring,missing-module-docstring,missing-class-docstring
+from panel_sketch.sketch_compiler import PyodideCompiler, SketchBase
 
 SKETCH_PYTHON = """
 print('Hello Compiler World')
@@ -18,6 +20,7 @@ def test_can_construct():
 
     # Then
     assert script in sketch.javascript
+
 
 def test_can_compile_basic_template():
     # Given
