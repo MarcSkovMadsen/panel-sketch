@@ -12,6 +12,7 @@ disable=bad-continuation,duplicate-code
 
 
 [DESIGN]
+max-attributes=12
 max-parents=13
 
 [TYPECHECK]

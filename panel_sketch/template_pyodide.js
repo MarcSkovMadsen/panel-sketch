@@ -1157,7 +1157,7 @@ def start_p5(setup_func, draw_func, event_functions):
         p5_sketch.draw = global_p5_injection(p5_sketch)(draw_func)
 
 
-    window.instance = p5.new(sketch_setup, '{{sketch-holder}}')
+    window.instance = p5.new(sketch_setup, 'sketch-holder')
 
     # inject event functions into p5
     event_function_names = (

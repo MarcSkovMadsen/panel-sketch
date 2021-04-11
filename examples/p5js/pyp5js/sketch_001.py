@@ -30,5 +30,3 @@ def draw():
             ellipse(myX, myY, 10)
 
     t = t + 0.01
-
-    print(frameRate())
