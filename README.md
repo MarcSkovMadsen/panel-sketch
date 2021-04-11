@@ -2,13 +2,13 @@
 
 # &#x270f; &#xfe0f; Panel Sketch
 
-THIS IS PRE APLHA SOFTWARE AND YOU CANNOT EXPECT IT TO WORK.
+THIS IS APLHA SOFTWARE AND YOU MAY EXPERIENCE ROUGH EDGES.
 
 The purpose of the `panel-sketch` package is to make it easy for Pythonistas to quickly sketch interactive visualizations and other applications running in
 
-- the browser. Potentially without a Python backend
-- the Jupyter Notebook.
-- your favorite editor or IDE.
+- The browser. Potentially without a Python backend
+- The Jupyter Notebook.
+- Your favorite editor or IDE.
 
 It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) but not limited to the p5js universe. You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python &#128013;.
 
@@ -20,15 +20,9 @@ Check out the `panel-sketch` examples on **Binder**
 
 THE PANEL APPS LINK IS CURRENTLY NOT WORKING. FORM THE JUPYTER LAB ON BINDER YOU CAN START IT MANUALLY IN A TERMINAL USING
 
-```bash
-panel serve examples/pyp5js/gallery/gallery.py --static-dirs transcrypt=panel_sketch/sketch_compiler/assets/js/transcrypt/ --port=5007 --allow-websocket-origin=hub.gke2.mybinder.org
-```
-
-and open a link similar to `https://hub.gke2.mybinder.org/user/marcskovmadsen-panel-sketch-zods9e4k/proxy/5007/gallery`.
-
 [![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
 
-It leverages `Python` to `Javascript` technologies. Currently [Pyodide](https://github.com/pyodide/pyodide) but potentially also [Transcrypt](https://www.transcrypt.org/), [Brython](https://brython.info/) or similar in the future.
+It leverages `Python` to `Javascript` technologies. Currently [Pyodide](https://github.com/pyodide/pyodide) and [Transcrypt](https://www.transcrypt.org/). But potentially also [Brython](https://brython.info/) or similar in the future.
 
 ## License
 
@@ -45,28 +39,70 @@ pip install panel-sketch
 ## Usage
 
 ```python
-import panel_sketch as ps
+from panel_sketch import Sketch
 
 import panel as pn
-pn.extension('Sketch')
+pn.config.sizing_mode="stretch_width"
 ```
 
 ```python
-src = "https://github.com/holoviz/panel/raw/master/doc/_static/logo_stacked.png"
-image_style = "height:95%;cursor: pointer;border: 1px solid #ddd;border-radius: 4px;padding: 5px;"
-image_html = f"<img class='image-button' src='{src}' style='{image_style}'>"
-
-sketch = Sketch(value=image_html, height=100, width=100)
-pn.Column(sketch, pn.Param(sketch, parameters=["clicks"])).servable()
+args={"r": 10, "g": 200, "b": 40} # This will give us the color for our sketch
 ```
 
-![Basic Example](assets/images/panel-sketch-basic-example.png)
+```python
+sketch_python = """
+# https://p5js.org/examples/interaction-wavemaker.html
+
+
+from pyp5js import *
+
+t = 0
+
+
+def setup():
+    createCanvas(600, 600)
+    stroke(250)
+    strokeWeight(3)
+    fill(window.args.r, window.args.g, window.args.b)
+
+
+def draw():
+    global t
+    background(10, 10)
+    fill(window.args.r, window.args.g, window.args.b)
+
+    xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, True)
+    yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, True)
+    for x in range(0, width, 30):
+        for y in range(0, height, 30):
+
+            angle = xAngle * (x / width) + yAngle * (y / height)
+
+            myX = x + 20 * cos(2 * PI * t + angle)
+            myY = y + 20 * sin(2 * TWO_PI * t + angle)
+
+            ellipse(myX, myY, 10)
+
+    t = t + 0.01
+"""
+```
+
+```python
+sketch = Sketch(object=sketch_python, template="pyp5js", compiler="pyodide", args=args)
+sketch.viewer.view
+```
+
+![Basic Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-basic-example.png?raw=true)
 
 ## Reference Guides
 
-- [Sketch](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/examples/Sketch.ipynb)
+### [Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/examples/Sketch.ipynb)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
+
+### [Gallery App](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/examples/pyp5js/gallery/gallery.py)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/pyp5js/gallery/gallery.py)
 
 ## Examples
 
