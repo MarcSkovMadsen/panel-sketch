@@ -18,6 +18,14 @@ Check out the `panel-sketch` examples on **Binder**
 | - | - | - |
 | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?filepath=examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=panel) |
 
+THE PANEL APPS LINK IS CURRENTLY NOT WORKING. FORM THE JUPYTER LAB ON BINDER YOU CAN START IT MANUALLY IN A TERMINAL USING
+
+```bash
+panel serve examples/pyp5js/gallery/gallery.py --static-dirs transcrypt=panel_sketch/sketch_compiler/assets/js/transcrypt/ --port=5007 --allow-websocket-origin=hub.gke2.mybinder.org
+```
+
+and open a link similar to `https://hub.gke2.mybinder.org/user/marcskovmadsen-panel-sketch-zods9e4k/proxy/5007/gallery`.
+
 [![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
 
 It leverages `Python` to `Javascript` technologies. Currently [Pyodide](https://github.com/pyodide/pyodide) but potentially also [Transcrypt](https://www.transcrypt.org/), [Brython](https://brython.info/) or similar in the future.

@@ -1,4 +1,4 @@
 -e .
 -e binder/jupyter-examples-server/.
 jupyter-server-proxy
-transcrypt
+transcrypt==3.7.16

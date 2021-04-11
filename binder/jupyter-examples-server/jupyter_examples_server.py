@@ -29,7 +29,7 @@ def panel_serve_examples():
             "--prefix",
             "{base_url}panel",
             "--static-dirs",
-            "./panel_sketch/sketch_compiler/assets/js/transcrypt/",
+            "transcrypt=panel_sketch/sketch_compiler/assets/js/transcrypt/",
         ],
         "absolute_url": True,
         "timeout": 360,
