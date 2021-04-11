@@ -19,7 +19,7 @@ def draw():
     ellipse(100, 100, radius, radius)
 """
 
-TEMPLATES = ["pyp5js"]
+TEMPLATES = ["basic", "pyp5js"]
 DEFAULT_TEMPLATE = "pyp5js"
 
 COMPILERS = ["pyodide"]

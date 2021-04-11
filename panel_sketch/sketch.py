@@ -11,16 +11,14 @@ It is heavily inspired by [p5js](https://p5js.org/get-started/),
 think of it as a [Code Sandbox](https://codesandbox.io/) or
 [JS Fiddle](https://jsfiddle.net/) but for #Python &#128013; and data science.
 """
-import pathlib
-from textwrap import dedent
 
 import panel as pn
 import param
 
 from .sketch_base import SketchBase
+from .sketch_compiler import COMPILERS
 from .sketch_editor import SketchEditor
 from .sketch_viewer import SketchViewer
-from .sketch_compiler import COMPILERS
 
 pn.config.js_files["p5"] = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"
 pn.config.js_files["pyodide"] = "https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"
@@ -68,7 +66,7 @@ class Sketch(SketchBase):  # pylint: disable=too-many-instance-attributes
     @property
     def _compiler(self):
         """The Compiler that makes compiling the Sketch a joy"""
-        if not self.compiler in self._compilers:
+        if self.compiler not in self._compilers:
             self._compilers[self.compiler] = COMPILERS[self.compiler](sketch=self)
         return self._compilers[self.compiler]
 

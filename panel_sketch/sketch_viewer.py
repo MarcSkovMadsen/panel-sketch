@@ -12,10 +12,10 @@ LAYOUT_NONE = (None, None, None)
 
 class SketchViewer(param.Parameterized):
     """The SketchViewer makes it easy to View a Sketch"""
+
     sketch = param.ClassSelector(class_=SketchBase, constant=True, precedence=-1)
 
     view = param.Parameter(constant=True)
-
 
     def __init__(self, **params):
         super().__init__(**params)
@@ -34,7 +34,9 @@ class SketchViewer(param.Parameterized):
         self._js_args_pane = pn.pane.HTML(width=0, height=0, margin=0, sizing_mode="fixed")
         self._js_pane = pn.pane.HTML(width=0, height=0, margin=0, sizing_mode="fixed")
         with param.edit_constant(self):
-            self.view = pn.Column(self._css_pane, self._html_pane, self._js_args_pane, self._js_pane)
+            self.view = pn.Column(
+                self._css_pane, self._html_pane, self._js_args_pane, self._js_pane
+            )
 
     def _to_unique(self, value):
         return value.replace("sketch-holder", f"sketch-{self._uuid}")

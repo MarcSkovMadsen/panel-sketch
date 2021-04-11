@@ -49,7 +49,11 @@ gallery = Gallery()
 template = pn.template.FastListTemplate(
     site="Panel Sketch", title="P5js Examples", main_max_width="1200px"
 )
-template.sidebar[:] = [gallery.sketch.param.template, gallery.param.example, gallery.sketch.param.compiler]
+template.sidebar[:] = [
+    gallery.sketch.param.template,
+    gallery.param.example,
+    gallery.sketch.param.compiler,
+]
 template.main[:] = [
     pn.Column(
         pn.pane.Markdown("# ✏️ Sketch"),

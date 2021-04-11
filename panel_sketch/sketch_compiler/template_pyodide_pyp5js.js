@@ -1,4 +1,4 @@
-console.log("Hello")
+console.log("pyodide pyp5js")
 let wrapper_content = `
 class PythonFunctions: pass
 
