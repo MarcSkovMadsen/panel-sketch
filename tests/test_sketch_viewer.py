@@ -4,7 +4,7 @@ from panel_sketch.sketch_viewer import SketchBase, SketchViewer
 
 
 def test_can_constructor():
-    sketch = SketchBase(javascript="console.log('sketch-holder')")
+    sketch = SketchBase(javascript="console.log('sketch-element')")
     viewer = SketchViewer(sketch=sketch)
 
     assert viewer.sketch == sketch
@@ -13,8 +13,8 @@ def test_can_constructor():
     assert "sketch-" in viewer._html_pane.object
     assert "sketch-" in viewer._js_pane.object
 
-    assert "sketch-holder" not in viewer._html_pane.object
-    assert "sketch-holder" not in viewer._js_pane.object
+    assert "sketch-element" not in viewer._html_pane.object
+    assert "sketch-element" not in viewer._js_pane.object
 
 
 def test_get_layout_fixed():

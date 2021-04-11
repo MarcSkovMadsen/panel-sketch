@@ -39,7 +39,7 @@ class SketchViewer(param.Parameterized):
             )
 
     def _to_unique(self, value):
-        return value.replace("sketch-holder", f"sketch-{self._uuid}")
+        return value.replace("sketch-element", f"sketch-{self._uuid}")
 
     # pylint: disable=no-member
     @param.depends("sketch.html", watch=True)

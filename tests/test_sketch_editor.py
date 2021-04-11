@@ -36,9 +36,9 @@ def test_can_compile():
     assert editor._log.value == ""
     # When
     editor._python_editor.value = "print('a')"
-    editor._html_editor.value = "<div id='sketch-holder'></div>HI"
+    editor._html_editor.value = "<div id='sketch-element'></div>HI"
     editor._css_editor.value = """
-#sketch-holder {
+#sketch-element {
     color: blue;
 }
     """

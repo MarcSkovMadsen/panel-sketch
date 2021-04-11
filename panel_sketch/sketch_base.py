@@ -22,7 +22,7 @@ def draw():
 TEMPLATES = ["basic", "pyp5js"]
 DEFAULT_TEMPLATE = "pyp5js"
 
-COMPILERS = ["pyodide"]
+COMPILERS = ["pyodide", "transcrypt"]
 DEFAULT_COMPILER = "pyodide"
 
 
@@ -33,7 +33,7 @@ class SketchBase(param.Parameterized):
         default=DEFAULT_SKETCH, doc="""A Python script. Is compiled to javascript and run."""
     )
     html = param.String(
-        default="""<div id="sketch-holder"></div>""", doc="""A HTML String. Marksup the Sketch."""
+        default="""<div id="sketch-element"></div>""", doc="""A HTML String. Marksup the Sketch."""
     )
     css = param.String(default="", doc="""A CSS String. Styles the Sketch""")
     javascript = param.String(default="", doc="""The output from the compilation of python""")

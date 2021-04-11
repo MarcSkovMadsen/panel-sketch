@@ -1,11 +1,4 @@
-console.log("pyodide pyp5js")
-let wrapper_content = `
-class PythonFunctions: pass
-
-setattr(PythonFunctions, 'map', map)
-setattr(PythonFunctions, 'filter', filter)
-setattr(PythonFunctions, 'set', set)
-
+from pyp5js.python_functions import PythonFunctions
 
 _P5_INSTANCE = None
 
@@ -133,6 +126,7 @@ windowWidth = None
 windowHeight = None
 width = None
 height = None
+disableFriendlyErrors = None
 deviceOrientation = None
 accelerationX = None
 accelerationY = None
@@ -198,7 +192,9 @@ def background(*args):
     return _P5_INSTANCE.background(*args)
 
 def clear(*args):
+    __pragma__('noalias', 'clear')
     p5_clear = _P5_INSTANCE.clear(*args)
+    __pragma__('alias', 'clear', 'py_clear')
     return p5_clear
 
 def erase(*args):
@@ -378,6 +374,12 @@ def getURLParams(*args):
 def preload(*args):
     return _P5_INSTANCE.preload(*args)
 
+def setup(*args):
+    return _P5_INSTANCE.setup(*args)
+
+def draw(*args):
+    return _P5_INSTANCE.draw(*args)
+
 def remove(*args):
     return _P5_INSTANCE.remove(*args)
 
@@ -546,8 +548,32 @@ def saveCanvas(*args):
 def saveFrames(*args):
     return _P5_INSTANCE.saveFrames(*args)
 
+
+def image_proxy(img):
+    """
+    Proxy to turn of transcypt when calling img.get/set methods
+    """
+
+    def _set(*args):
+        __pragma__('noalias', 'set')
+        value = img.set(*args)
+        __pragma__('alias', 'set', 'py_set')
+        return value
+
+    def _get(*args):
+        __pragma__('noalias', 'get')
+        value = img.get(*args)
+        __pragma__('alias', 'get', 'py_get')
+        return value
+
+    img.set = _set
+    img.get = _get
+    return img
+
+
 def loadImage(*args):
-    return _P5_INSTANCE.loadImage(*args)
+    imageObj = _P5_INSTANCE.loadImage(*args)
+    return image_proxy(imageObj)
 
 def image(*args):
     return _P5_INSTANCE.image(*args)
@@ -574,7 +600,10 @@ def filter(*args):
         return _P5_INSTANCE.filter(*args)
 
 def get(*args):
-    return _P5_INSTANCE.get(*args)
+    __pragma__('noalias', 'get')
+    p5_get = _P5_INSTANCE.get(*args)
+    __pragma__('alias', 'get', 'py_get')
+    return p5_get
 
 def loadPixels(*args):
     return _P5_INSTANCE.loadPixels(*args)
@@ -683,6 +712,7 @@ def map(*args):
         return PythonFunctions.map(*args)
     else:
         return _P5_INSTANCE.map(*args)
+
 
 def max(*args):
     return _P5_INSTANCE.max(*args)
@@ -929,7 +959,9 @@ def createCanvas(*args):
 
 
 def pop(*args):
+    __pragma__('noalias', 'pop')
     p5_pop = _P5_INSTANCE.pop(*args)
+    __pragma__('alias', 'pop', 'py_pop')
     return p5_pop
 
 
@@ -957,7 +989,7 @@ def pre_draw(p5_instance, draw_func):
     global TRIANGLE_FAN, TRIANGLE_STRIP, TRIANGLES, TWO_PI, UP_ARROW, VIDEO, WAIT, WEBGL
 
     global frameCount, focused, displayWidth, displayHeight, windowWidth, windowHeight, width, height
-    global deviceOrientation, accelerationX, accelerationY, accelerationZ
+    global disableFriendlyErrors, deviceOrientation, accelerationX, accelerationY, accelerationZ
     global pAccelerationX, pAccelerationY, pAccelerationZ, rotationX, rotationY, rotationZ
     global pRotationX, pRotationY, pRotationZ, turnAxis, keyIsPressed, key, keyCode, mouseX, mouseY, pmouseX, pmouseY
     global winMouseX, winMouseY, pwinMouseX, pwinMouseY, mouseButton, mouseIsPressed, touches, pixels
@@ -1086,6 +1118,7 @@ def pre_draw(p5_instance, draw_func):
     windowHeight = p5_instance.windowHeight
     width = p5_instance.width
     height = p5_instance.height
+    disableFriendlyErrors = p5_instance.disableFriendlyErrors
     deviceOrientation = p5_instance.deviceOrientation
     accelerationX = p5_instance.accelerationX
     accelerationY = p5_instance.accelerationY
@@ -1150,14 +1183,11 @@ def start_p5(setup_func, draw_func, event_functions):
     """
 
     def sketch_setup(p5_sketch):
-        """
-        Callback function called to configure new p5 instance
-        """
         p5_sketch.setup = global_p5_injection(p5_sketch)(setup_func)
         p5_sketch.draw = global_p5_injection(p5_sketch)(draw_func)
 
 
-    window.instance = p5.new(sketch_setup, 'sketch-element')
+    instance = __new__(p5(sketch_setup, 'sketch-holder'))
 
     # inject event functions into p5
     event_function_names = (
@@ -1172,47 +1202,21 @@ def start_p5(setup_func, draw_func, event_functions):
         func = event_functions[f_name]
         event_func = global_p5_injection(instance)(func)
         setattr(instance, f_name, event_func)
-`;
 
-let placeholder = `
-def setup():
-    pass
 
-def draw():
-    pass
-`;
+def logOnloaded():
+    console.log("Lib loaded!")
 
-let userCode = `
-{{sketch_object}}
-`;
 
-function runCode() {
-    let code = [
-        placeholder,
-        userCode,
-        wrapper_content,
-        'start_p5(setup, draw, {});',
-    ].join('\n');
+def add_library(lib_name):
+    # placeholder for https://github.com/berinhard/pyp5js/issues/31
+    src = ''
 
-    if (window.instance) {
-      window.instance.canvas.remove();
-    }
+    return console.log("Lib name is not valid:", lib_name)
 
-    console.log("Python execution output:");
-    pyodide.runPython(code);
-}
+    console.log("Importing:", src)
 
-languagePluginLoader.then(() => {
-    pyodide.runPython(`
-      import io, code, sys
-      from js import pyodide, p5, window, document
-      print(sys.version)
-    `)
-
-    window.runSketchCode = (code) => {
-      userCode = code;
-      runCode();
-    }
-
-    runCode();
-});
+    script = document.createElement("script")
+    script.onload = logOnloaded
+    script.src = src
+    document.head.appendChild(script)
