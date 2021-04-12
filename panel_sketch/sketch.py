@@ -65,7 +65,7 @@ class Sketch(SketchBase):  # pylint: disable=too-many-instance-attributes
 
     @property
     def _compiler(self):
-        """The Compiler that makes compiling the Sketch a joy"""
+        """A Compiler that makes compiling the Sketch a joy"""
         if self.compiler not in self._compilers:
             self._compilers[self.compiler] = COMPILERS[self.compiler](sketch=self)
         return self._compilers[self.compiler]

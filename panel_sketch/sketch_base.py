@@ -30,22 +30,35 @@ class SketchBase(param.Parameterized):
     """SketchBase is the basic Data Model of a Sketch"""
 
     object = param.String(
-        default=DEFAULT_SKETCH, doc="""A Python script. Is compiled to javascript and run."""
+        default=DEFAULT_SKETCH,
+        doc="""A Python script. It is transpiled to javascript (Transcript) or run directly in javascript (Pyodide). You can reference the `div` element via `sketchElement` in Python""",
     )
     html = param.String(
-        default="""<div id="sketch-element"></div>""", doc="""A HTML String. Marksup the Sketch."""
+        default="""<div id="sketch-element"></div>""",
+        doc="""A HTML String to mark up the Sketch.""",
     )
-    css = param.String(default="", doc="""A CSS String. Styles the Sketch""")
-    javascript = param.String(default="", doc="""The output from the compilation of python""")
+    css = param.String(
+        default="",
+        doc="""A CSS String to style the Sketch. You can style the HTML div via the `#sketch-element` reference.""",
+    )
+    javascript = param.String(
+        default="", doc="""The result of the compilation of the python object."""
+    )
 
     args = param.Dict(
-        doc="""A Dictionary of keys and values that can be used in the python script"""
+        doc="""A Dictionary of keys and values that can be reference via `window.args` in the python script."""
     )
 
-    loading = param.Boolean(doc="""Whether or not the Sketch is loading. For example during compilation.""")
-
-    template = param.ObjectSelector(DEFAULT_TEMPLATE, objects=TEMPLATES)
+    template = param.ObjectSelector(
+        DEFAULT_TEMPLATE,
+        objects=TEMPLATES,
+        doc="""The template to use for compilation. One of 'basic', 'pyp5js'. Default is (currently) 'pyp5js'.""",
+    )
     compiler = param.ObjectSelector(DEFAULT_COMPILER, objects=COMPILERS)
+
+    loading = param.Boolean(
+        doc="""Whether or not the Sketch is loading. For example during compilation."""
+    )
 
     def __init__(self, **params):
         if "args" not in params:

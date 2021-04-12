@@ -2,7 +2,7 @@
 
 # &#x270f; &#xfe0f; Panel Sketch
 
-THIS IS APLHA SOFTWARE AND YOU MAY EXPERIENCE ROUGH EDGES.
+THIS IS APLHA SOFTWARE AND YOU MAY EXPERIENCE API CHANGES AND ROUGH EDGES.
 
 The purpose of the `panel-sketch` package is to make it easy for Pythonistas to quickly sketch interactive visualizations and other applications running in
 
@@ -10,19 +10,19 @@ The purpose of the `panel-sketch` package is to make it easy for Pythonistas to 
 - The Jupyter Notebook.
 - Your favorite editor or IDE.
 
-It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) but not limited to the p5js universe.
+It is heavily inspired by [p5js](https://p5js.org/get-started/), [p5js sketches](https://editor.p5js.org/p5/sketches) and [pyp5js](https://github.com/berinhard/pyp5js) &#10084;&#65039; It is not limited to the p5js universe though.
 
 You can also think of it as a [Code Sandbox](https://codesandbox.io/) or [JS Fiddle](https://jsfiddle.net/) but for #Python, #PyData and #PyViz &#128013;.
+
+[![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
+
+It leverages the powerful `Python` to `Javascript` frameworks [Pyodide](https://github.com/pyodide/pyodide) and [Transcrypt](https://www.transcrypt.org/) &#128170;. Potentially [Brython](https://brython.info/) and other could be added in the future.
 
 Check out the `panel-sketch` examples on **Binder**
 
 | Jupyter Notebook | Jupyter Labs | Panel Apps |
 | - | - | - |
 | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?filepath=examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=panel) |
-
-[![Panel Sketch Reference Example](https://github.com/MarcSkovMadsen/panel-sketch/blob/main/assets/images/panel-sketch-binder.gif?raw=true)](https://mybinder.org/v2/gh/marcskovmadsen/panel-sketch/HEAD?urlpath=lab/tree/examples/Sketch.ipynb)
-
-It leverages `Python` to `Javascript` frameworks. Currently [Pyodide](https://github.com/pyodide/pyodide) and [Transcrypt](https://www.transcrypt.org/). But potentially also [Brython](https://brython.info/) or similar in the future.
 
 ## License
 
@@ -116,12 +116,15 @@ You can find more inspiration via the links below.
 
 When I get the time I would like to
 
+- add example using basic template to Sketch Reference Example
 - Add `basic` template examples.
 - Enable using the content of notebook cells instead of a string to instantite `Sketch`.
 - Add more notebook examples
 - Enable easy import and export of sketches
 - Find out how I can serve the target js modules in notebook (Enable Transcrypt in Notebook).
 - Support [alternatives](https://www.slant.co/options/147/alternatives/~p5-js-alternatives) to p5js like [three.js](https://threejs.org/)
+- change `window.args` to `args` reference.
+- change `Sketch.viewer.view` to `Sketch.viewer`. Similarly for `Sketch.editor`.
 - (re-)align with pyp5js
 - Add example app to [Awesome Panel](https://awesome-panel.org).
 - Support extensions to p5js like [m5.js](https://ml5js.org/)
